@@ -1,0 +1,8 @@
+ext{
+    dependencies = [
+            "rxpermissions":'com.github.tbruyelle:rxpermissions:0.10.2',
+            "arouter-api":'com.alibaba:arouter-api:1.4.0',
+            "arouter-compiler":'com.alibaba:arouter-compiler:1.2.1',
+            "utilcode":'com.blankj:utilcode:1.20.3',
+    ]
+}
