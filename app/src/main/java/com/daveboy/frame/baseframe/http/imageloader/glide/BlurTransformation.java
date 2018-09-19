@@ -48,7 +48,6 @@ public class BlurTransformation extends BitmapTransformation {
     @Override
     public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
         messageDigest.update(ID_BYTES);
-
     }
 
     @Override
