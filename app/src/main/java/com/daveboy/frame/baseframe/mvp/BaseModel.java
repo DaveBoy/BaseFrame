@@ -20,6 +20,7 @@ import android.arch.lifecycle.LifecycleObserver;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 
+import com.daveboy.frame.baseframe.di.scope.ActivityScope;
 import com.daveboy.frame.baseframe.integration.IRepositoryManager;
 
 /**

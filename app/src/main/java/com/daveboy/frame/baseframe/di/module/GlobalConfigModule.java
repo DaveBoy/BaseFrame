@@ -23,6 +23,7 @@ import android.text.TextUtils;
 import com.bumptech.glide.Glide;
 import com.daveboy.frame.baseframe.http.BaseUrl;
 import com.daveboy.frame.baseframe.http.GlobalHttpHandler;
+import com.daveboy.frame.baseframe.http.imageloader.glide.GlideImageLoaderStrategy;
 import com.daveboy.frame.baseframe.http.log.DefaultFormatPrinter;
 import com.daveboy.frame.baseframe.http.log.FormatPrinter;
 import com.daveboy.frame.baseframe.http.log.RequestInterceptor;

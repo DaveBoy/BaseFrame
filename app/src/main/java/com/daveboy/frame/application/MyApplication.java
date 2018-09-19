@@ -1,4 +1,4 @@
-package com.daveboy.frame.baseframe.application;
+package com.daveboy.frame.application;
 
 import android.app.Application;
 
