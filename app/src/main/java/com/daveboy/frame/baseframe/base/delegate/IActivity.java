@@ -29,7 +29,7 @@ import com.daveboy.frame.baseframe.integration.ActivityLifecycle;
 import com.daveboy.frame.baseframe.integration.cache.Cache;
 import com.daveboy.frame.baseframe.integration.cache.LruCache;
 
-
+import org.simple.eventbus.EventBus;
 
 
 /**
