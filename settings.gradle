@@ -1,1 +1,1 @@
-include ':app', ':webview', ':commonlib'
+include ':app'
