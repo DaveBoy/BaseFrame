@@ -23,8 +23,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     api(rootProject.ext.dependencies["support-v4"]) {
         exclude module: 'support-annotations'
     }
@@ -39,7 +38,6 @@ dependencies {
         exclude module: 'support-v4'
     }
     api rootProject.ext.dependencies["annotations"]
-
     //view
     api(rootProject.ext.dependencies["autolayout"]) {
         exclude group: 'com.android.support'
@@ -47,7 +45,6 @@ dependencies {
     api(rootProject.ext.dependencies["butterknife"]) {
         exclude module: 'support-annotations'
     }
-
     //rx
     api rootProject.ext.dependencies["rxjava2"]
     api(rootProject.ext.dependencies["rxandroid2"]) {
@@ -75,7 +72,6 @@ dependencies {
         exclude module: 'support-annotations'
     }
     api rootProject.ext.dependencies['rxerrorhandler2']
-
     //network
     api(rootProject.ext.dependencies["retrofit"]) {
         exclude module: 'okhttp'
@@ -100,21 +96,18 @@ dependencies {
     annotationProcessor(rootProject.ext.dependencies["glide-compiler"]) {
         exclude module: 'jsr305'
     }
-
     //tools
     compileOnly rootProject.ext.dependencies["javax.annotation"]
     api rootProject.ext.dependencies["dagger2"]
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     api rootProject.ext.dependencies["androideventbus"]
     api rootProject.ext.dependencies["gson"]
-
     api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
-
+    api rootProject.ext.dependencies["cardview-v7"]
     //test
     api rootProject.ext.dependencies["timber"]
+    api rootProject.ext.dependencies["paginate"]
     testImplementation rootProject.ext.dependencies["junit"]
-
-//    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"] //Butterknife 插件,很多人因为没加这个而报错,切记!!!
-//    annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]//依赖插件, annotationProcessor 是 AndroidStudio 自带并用来替换 APT
-
+        annotationProcessor rootProject.ext.dependencies["butterknife-compiler"] //Butterknife 插件,很多人因为没加这个而报错,切记!!!
+     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]//依赖插件, annotationProcessor 是 AndroidStudio 自带并用来替换 APT
 }

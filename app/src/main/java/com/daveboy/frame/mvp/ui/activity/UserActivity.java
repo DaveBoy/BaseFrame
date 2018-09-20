@@ -1,81 +1,144 @@
 package com.daveboy.frame.mvp.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.RecyclerView;
 
+import com.daveboy.frame.R;
 import com.daveboy.frame.baseframe.base.BaseActivity;
 import com.daveboy.frame.baseframe.base.DefaultAdapter;
 import com.daveboy.frame.baseframe.di.component.AppComponent;
+import com.daveboy.frame.baseframe.utils.ArmsUtils;
+import com.daveboy.frame.di.component.DaggerUserComponent;
+import com.daveboy.frame.di.module.UserModule;
 import com.daveboy.frame.mvp.constract.UserContract;
 import com.daveboy.frame.mvp.module.UserModel;
 import com.daveboy.frame.mvp.presenter.UserPresenter;
+import com.paginate.Paginate;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
 
 public class UserActivity extends BaseActivity<UserPresenter> implements UserContract.UserView,SwipeRefreshLayout.OnRefreshListener {
+    @Inject
+    RxPermissions rxPermissions;
+    @BindView(R.id.app_user_recycleview)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.app_user_swipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+    @Inject
+    RecyclerView.LayoutManager layoutManager;
+    @Inject
+    RecyclerView.Adapter mAdapter;
+
+    private Paginate mPaginate;
+    private boolean isLoadingMore;
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
         DaggerUserComponent
                 .builder()
                 .appComponent(appComponent)
-                .userModule(new UserModel(this))
+                .userModule(new UserModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
     public int initView(@Nullable Bundle savedInstanceState) {
-        return 0;
+        return R.layout.app_activity_user;
     }
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-
+        initRecyclerView();
+        mRecyclerView.setAdapter(mAdapter);
+        initPaginate();
     }
 
-    @Override
-    public void setAdapter(DefaultAdapter adapter) {
+    private void initPaginate() {
+        if(mPaginate==null){
+            Paginate.Callbacks callbacks=new Paginate.Callbacks() {
+                @Override
+                public void onLoadMore() {
+                    mPresenter.requestUsers(false);
+                }
 
+                @Override
+                public boolean isLoading() {
+                    return isLoadingMore;
+                }
+
+                @Override
+                public boolean hasLoadedAllItems() {
+                    return false;
+                }
+            };
+            mPaginate = Paginate.with(mRecyclerView, callbacks)
+                    .setLoadingTriggerThreshold(0)
+                    .build();
+            mPaginate.setHasMoreDataToLoad(false);
+        }
     }
+
+    private void initRecyclerView() {
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        ArmsUtils.configRecyclerView(mRecyclerView, layoutManager);
+    }
+
 
     @Override
     public void startLoadMore() {
-
+        isLoadingMore=true;
     }
 
     @Override
     public void endLoadMore() {
+        isLoadingMore=false;
+    }
 
+    @Override
+    public Activity getActivity() {
+        return this;
+    }
+
+    @Override
+    public RxPermissions getRxPermissions() {
+        return rxPermissions;
     }
 
     @Override
     public void showLoading() {
-
+        mSwipeRefreshLayout.setRefreshing(true);
     }
 
     @Override
     public void hideLoading() {
-
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
     public void showMessage(@NonNull String message) {
-
+        ArmsUtils.snackbarText(message);
     }
 
     @Override
     public void launchActivity(@NonNull Intent intent) {
-
+        ArmsUtils.startActivity(intent);
     }
 
     @Override
     public void killMyself() {
-
+        finish();
     }
 
     @Override
     public void onRefresh() {
-
+        mPresenter.requestUsers(true);
     }
 }
