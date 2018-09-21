@@ -19,7 +19,7 @@ import butterknife.OnClick;
 public class App_activity_mainActivity extends BaseActivity {
 
     @BindView(R.id.app_main_txt)
-    TextView app_main_txt;
+    TextView app_main_txt; 
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
