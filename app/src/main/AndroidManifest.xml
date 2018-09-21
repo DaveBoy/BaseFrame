@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.daveboy.frame">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:name="com.daveboy.frame.application.MyApplication"
         android:allowBackup="true"
@@ -16,5 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".mvp.ui.activity.UserActivity"/>
+
+        <meta-data
+            android:name="com.daveboy.frame.config.GlobalConfiguration"
+            android:value="ConfigModule"/>
     </application>
 </manifest>
