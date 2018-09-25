@@ -21,7 +21,7 @@
         <activity android:name=".mvp.ui.activity.UserActivity"/>
 
         <meta-data
-            android:name="com.daveboy.frame.config.GlobalConfiguration"
+            android:name="com.daveboy.frame.app.GlobalConfiguration"
             android:value="ConfigModule"/>
     </application>
 </manifest>

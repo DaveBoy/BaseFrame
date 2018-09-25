@@ -90,13 +90,15 @@ public final class AppManager {
     public void onReceive(Message message) {
         switch (message.what) {
             case START_ACTIVITY:
-                if (message.obj == null)
+                if (message.obj == null) {
                     break;
+                }
                 dispatchStart(message);
                 break;
             case SHOW_SNACKBAR:
-                if (message.obj == null)
+                if (message.obj == null) {
                     break;
+                }
                 showSnackbar((String) message.obj, message.arg1 == 0 ? false : true);
                 break;
             case KILL_ALL:
@@ -115,10 +117,11 @@ public final class AppManager {
     }
 
     private void dispatchStart(Message message) {
-        if (message.obj instanceof Intent)
+        if (message.obj instanceof Intent) {
             startActivity((Intent) message.obj);
-        else if (message.obj instanceof Class)
+        } else if (message.obj instanceof Class) {
             startActivity((Class) message.obj);
+        }
     }
 
 
@@ -414,8 +417,9 @@ public final class AppManager {
             while (iterator.hasNext()) {
                 Activity next = iterator.next();
 
-                if (excludeList.contains(next.getClass()))
+                if (excludeList.contains(next.getClass())) {
                     continue;
+                }
 
                 iterator.remove();
                 next.finish();
@@ -435,8 +439,9 @@ public final class AppManager {
             while (iterator.hasNext()) {
                 Activity next = iterator.next();
 
-                if (excludeList.contains(next.getClass().getName()))
+                if (excludeList.contains(next.getClass().getName())) {
                     continue;
+                }
 
                 iterator.remove();
                 next.finish();

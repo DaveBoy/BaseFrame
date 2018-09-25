@@ -12,7 +12,9 @@ public class User {
     }
 
     public String getAvatarUrl() {
-        if (avatar_url.isEmpty()) return avatar_url;
+        if (avatar_url.isEmpty()) {
+            return avatar_url;
+        }
         return avatar_url.split("\\?")[0];
     }
 

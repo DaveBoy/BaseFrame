@@ -1,4 +1,4 @@
-package com.daveboy.frame.config;
+package com.daveboy.frame.app;
 
 import android.content.Context;
 import android.net.ParseException;

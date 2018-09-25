@@ -76,15 +76,17 @@ public class AdapterViewPager extends FragmentStatePagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         Fragment f = (Fragment) super.instantiateItem(container, position);
         View view = f.getView();
-        if (view != null)
+        if (view != null) {
             container.addView(view);
+        }
         return f;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         View view = mList.get(position).getView();
-        if (view != null)
+        if (view != null) {
             container.removeView(view);
+        }
     }
 }

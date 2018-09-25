@@ -37,7 +37,9 @@ public class LogUtils {
     public static final String DEFAULT_TAG = "MVPArms";
 
     public static void debugInfo(String tag, String msg) {
-        if (!isLog || TextUtils.isEmpty(msg)) return;
+        if (!isLog || TextUtils.isEmpty(msg)) {
+            return;
+        }
         Log.d(tag, msg);
 
     }
@@ -47,7 +49,9 @@ public class LogUtils {
     }
 
     public static void warnInfo(String tag, String msg) {
-        if (!isLog || TextUtils.isEmpty(msg)) return;
+        if (!isLog || TextUtils.isEmpty(msg)) {
+            return;
+        }
         Log.w(tag, msg);
 
     }
@@ -63,7 +67,9 @@ public class LogUtils {
      * @param str void
      */
     public static void debugLongInfo(String tag, String str) {
-        if (!isLog) return;
+        if (!isLog) {
+            return;
+        }
         str = str.trim();
         int index = 0;
         int maxLength = 3500;

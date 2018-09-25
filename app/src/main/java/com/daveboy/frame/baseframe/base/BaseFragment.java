@@ -81,7 +81,9 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment implem
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) mPresenter.onDestroy();//释放资源
+        if (mPresenter != null) {
+            mPresenter.onDestroy();//释放资源
+        }
         this.mPresenter = null;
     }
 

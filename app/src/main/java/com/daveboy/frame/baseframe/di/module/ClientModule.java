@@ -79,8 +79,9 @@ public abstract class ClientModule {
                 .baseUrl(httpUrl)//域名
                 .client(client);//设置okhttp
 
-        if (configuration != null)
+        if (configuration != null) {
             configuration.configRetrofit(application, builder);
+        }
 
         builder
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用 Rxjava
@@ -108,13 +109,14 @@ public abstract class ClientModule {
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .addNetworkInterceptor(intercept);
 
-        if (handler != null)
+        if (handler != null) {
             builder.addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
                     return chain.proceed(handler.onHttpRequestBefore(chain, chain.request()));
                 }
             });
+        }
 
         if (interceptors != null) {//如果外部提供了interceptor的集合则遍历添加
             for (Interceptor interceptor : interceptors) {
@@ -122,8 +124,9 @@ public abstract class ClientModule {
             }
         }
 
-        if (configuration != null)
+        if (configuration != null) {
             configuration.configOkhttp(application, builder);
+        }
         return builder.build();
     }
 
@@ -158,7 +161,9 @@ public abstract class ClientModule {
         if (configuration != null) {
             rxCache = configuration.configRxCache(application, builder);
         }
-        if (rxCache != null) return rxCache;
+        if (rxCache != null) {
+            return rxCache;
+        }
         return builder
                 .persistence(cacheDirectory, new GsonSpeaker());
     }

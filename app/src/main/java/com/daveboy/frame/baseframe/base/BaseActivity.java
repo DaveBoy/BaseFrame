@@ -101,11 +101,13 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY)
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY) {
             mUnbinder.unbind();
+        }
         this.mUnbinder = null;
-        if (mPresenter != null)
+        if (mPresenter != null) {
             mPresenter.onDestroy();//释放资源
+        }
         this.mPresenter = null;
     }
 

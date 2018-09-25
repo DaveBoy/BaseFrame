@@ -77,8 +77,9 @@ public class AutoTabLayout extends TabLayout {
                 R.styleable.TextAppearance);
 
         try {
-            if (!DimenUtils.isPxVal(a.peekValue(R.styleable.TextAppearance_android_textSize)))
+            if (!DimenUtils.isPxVal(a.peekValue(R.styleable.TextAppearance_android_textSize))) {
                 return NO_VALID;
+            }
             return a.getDimensionPixelSize(R.styleable.TextAppearance_android_textSize, NO_VALID);
         } finally {
             a.recycle();
@@ -98,7 +99,9 @@ public class AutoTabLayout extends TabLayout {
     }
 
     private void setUpTabTextSize(Tab tab) {
-        if (mTextSize == NO_VALID || tab.getCustomView() != null) return;
+        if (mTextSize == NO_VALID || tab.getCustomView() != null) {
+            return;
+        }
 
         ViewGroup tabGroup = (ViewGroup) getChildAt(0);
         ViewGroup tabContainer = (ViewGroup) tabGroup.getChildAt(tab.getPosition());

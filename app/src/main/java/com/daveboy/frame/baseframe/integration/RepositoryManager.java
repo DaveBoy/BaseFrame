@@ -67,8 +67,9 @@ public class RepositoryManager implements IRepositoryManager {
      */
     @Override
     public synchronized <T> T obtainRetrofitService(Class<T> service) {
-        if (mRetrofitServiceCache == null)
+        if (mRetrofitServiceCache == null) {
             mRetrofitServiceCache = mCachefactory.build(CacheType.RETROFIT_SERVICE_CACHE);
+        }
         Preconditions.checkNotNull(mRetrofitServiceCache, "Cannot return null from a Cache.Factory#build(int) method");
         T retrofitService = (T) mRetrofitServiceCache.get(service.getCanonicalName());
         if (retrofitService == null) {
@@ -87,8 +88,9 @@ public class RepositoryManager implements IRepositoryManager {
      */
     @Override
     public synchronized <T> T obtainCacheService(Class<T> cache) {
-        if (mCacheServiceCache == null)
+        if (mCacheServiceCache == null) {
             mCacheServiceCache = mCachefactory.build(CacheType.CACHE_SERVICE_CACHE);
+        }
         Preconditions.checkNotNull(mCacheServiceCache, "Cannot return null from a Cache.Factory#build(int) method");
         T cacheService = (T) mCacheServiceCache.get(cache.getCanonicalName());
         if (cacheService == null) {

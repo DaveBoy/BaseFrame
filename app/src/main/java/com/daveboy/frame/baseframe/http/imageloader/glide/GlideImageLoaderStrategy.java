@@ -52,10 +52,18 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy<ImageCo
 
     @Override
     public void loadImage(Context ctx, ImageConfigImpl config) {
-        if (ctx == null) throw new NullPointerException("Context is required");
-        if (config == null) throw new NullPointerException("ImageConfigImpl is required");
-        if (TextUtils.isEmpty(config.getUrl())) throw new NullPointerException("Url is required");
-        if (config.getImageView() == null) throw new NullPointerException("Imageview is required");
+        if (ctx == null) {
+            throw new NullPointerException("Context is required");
+        }
+        if (config == null) {
+            throw new NullPointerException("ImageConfigImpl is required");
+        }
+        if (TextUtils.isEmpty(config.getUrl())) {
+            throw new NullPointerException("Url is required");
+        }
+        if (config.getImageView() == null) {
+            throw new NullPointerException("Imageview is required");
+        }
 
 
         GlideRequests requests;
@@ -110,13 +118,19 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy<ImageCo
         }
 
         if (config.getPlaceholder() != 0)//设置占位符
+        {
             glideRequest.placeholder(config.getPlaceholder());
+        }
 
         if (config.getErrorPic() != 0)//设置错误的图片
+        {
             glideRequest.error(config.getErrorPic());
+        }
 
         if (config.getFallback() != 0)//设置请求 url 为空图片
+        {
             glideRequest.fallback(config.getFallback());
+        }
 
 
         glideRequest
@@ -125,8 +139,12 @@ public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy<ImageCo
 
     @Override
     public void clear(final Context ctx, ImageConfigImpl config) {
-        if (ctx == null) throw new NullPointerException("Context is required");
-        if (config == null) throw new NullPointerException("ImageConfigImpl is required");
+        if (ctx == null) {
+            throw new NullPointerException("Context is required");
+        }
+        if (config == null) {
+            throw new NullPointerException("ImageConfigImpl is required");
+        }
 
         if (config.getImageViews() != null && config.getImageViews().length > 0) {//取消在执行的任务并且释放资源
             for (ImageView imageView : config.getImageViews()) {

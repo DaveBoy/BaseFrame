@@ -71,11 +71,13 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
         //如果 intent 包含了此字段,并且为 true 说明不加入到 list 进行统一管理
         boolean isNotAdd = false;
-        if (activity.getIntent() != null)
+        if (activity.getIntent() != null) {
             isNotAdd = activity.getIntent().getBooleanExtra(AppManager.IS_NOT_ADD_ACTIVITY_LIST, false);
+        }
 
-        if (!isNotAdd)
+        if (!isNotAdd) {
             mAppManager.addActivity(activity);
+        }
 
         //配置ActivityDelegate
         if (activity instanceof IActivity) {

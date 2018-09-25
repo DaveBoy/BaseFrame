@@ -91,7 +91,9 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
             }
         }
         if (useEventBus())//如果要使用 Eventbus 请将此方法返回 true
+        {
             EventBus.getDefault().register(this);//注册 Eventbus
+        }
     }
 
     /**
@@ -100,10 +102,13 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
     @Override
     public void onDestroy() {
         if (useEventBus())//如果要使用 Eventbus 请将此方法返回 true
+        {
             EventBus.getDefault().unregister(this);//解除注册 Eventbus
+        }
         unDispose();//解除订阅
-        if (mModel != null)
+        if (mModel != null) {
             mModel.onDestroy();
+        }
         this.mModel = null;
         this.mRootView = null;
         this.mCompositeDisposable = null;

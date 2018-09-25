@@ -56,8 +56,9 @@ public abstract class AppModule {
     @Provides
     static Gson provideGson(Application application, @Nullable GsonConfiguration configuration) {
         GsonBuilder builder = new GsonBuilder();
-        if (configuration != null)
+        if (configuration != null) {
             configuration.configGson(application, builder);
+        }
         return builder.create();
     }
 
